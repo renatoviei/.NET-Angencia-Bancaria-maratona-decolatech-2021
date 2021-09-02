@@ -10,8 +10,7 @@ namespace AgenciaBancaria.Dominio
     {
         public Cliente(string nome, string cpf, string rg, Endereco endereco)
         {
-            //Validando construtor por método de extensão
-
+            //Validando construtor por método de extensão na classe Validacoes
             Nome = nome.ValidaStringVazia();
 
             CPF = cpf.ValidaStringVazia();
