@@ -7,7 +7,8 @@ using System.Text.RegularExpressions;
 
 namespace AgenciaBancaria.Dominio
 {
-    public class ContaBancaria
+    //Classe abstrata para garanti que não pode ser instanciada
+    public abstract class ContaBancaria
     {
         public ContaBancaria(Cliente cliente)
         {
@@ -37,6 +38,22 @@ namespace AgenciaBancaria.Dominio
             {
                 throw new Exception("Senha inválida!");
             }
+        }
+
+        //Notação VIRTUAL indicando que o comportamento do método será sobrescrito (mudado) na classe filha
+        public virtual void Sacar(decimal valor, string senha)
+        {
+            if (Senha != senha)
+            {
+                throw new Exception("Senha inválida");
+            }
+
+            if(Saldo < valor)
+            {
+                throw new Exception("Saldo insuficiente");
+            }
+
+            Saldo -= valor;
         }
 
         public int NumeroConta { get; init; }
